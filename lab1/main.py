@@ -13,14 +13,14 @@ def findElapsedTime(func):
     return wrapper
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def sorted(data):
     data.sort(key=lambda a: len(a))
     print(f"Sorted = {rawData}")
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def unique(data):
     """
@@ -29,7 +29,7 @@ def unique(data):
     print(f"Unique = {list(set(data))}")
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def myEnumerate(data=None):
     if data is None:
@@ -39,7 +39,7 @@ def myEnumerate(data=None):
     print(list(s))
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def frequencyOfWords(filename):
     f = open("test.txt")
@@ -52,7 +52,7 @@ def frequencyOfWords(filename):
     print(res)
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def pow2For(data):
     buf = list(range(len(data)))
@@ -61,14 +61,14 @@ def pow2For(data):
     print(buf)
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def pow2ListComprehension(data):
     i = [pow(i, 2) for i in data]
     print(i)
 
 
-@findElapsedTime
+# @findElapsedTime
 @Decorator
 def pow2Map(data):
     print(list(map(lambda x: x**2, data)))
@@ -80,24 +80,34 @@ rawData = ["python", "perl", "c", "haskell", "cpp", "haskell", "cpp", "ruby", "r
 print(f"Raw data = {rawData}")
 
 print("\nTask 1")
-findElapsedTime(unique(rawData))
+# findElapsedTime(unique(rawData))
+unique(rawData)
+
 
 print("\nTask 2")
-findElapsedTime(sorted(rawData))
+# findElapsedTime(sorted(rawData))
+sorted(rawData)
 
 print("\nTask 3")
-findElapsedTime(myEnumerate(rawData))
+# findElapsedTime(myEnumerate(rawData))
+myEnumerate(rawData)
 
 print("\nTask 4")
-findElapsedTime(frequencyOfWords("test.txt"))
+# findElapsedTime(frequencyOfWords("test.txt"))
+frequencyOfWords("test.txt")
 
 
 print("\nTask 5")
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 print(f"Initial array = {arr}")
 print("For")
-findElapsedTime(pow2For(arr))
+# findElapsedTime(pow2For(arr))
+pow2For(arr)
+
 print("\n\nList Comprehension")
-findElapsedTime(pow2ListComprehension(arr))
+# findElapsedTime(pow2ListComprehension(arr))
+pow2ListComprehension(arr)
+
 print("\n\nMap")
-findElapsedTime(pow2Map(arr))
+# findElapsedTime(pow2Map(arr))
+pow2Map(arr)
