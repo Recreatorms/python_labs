@@ -1,0 +1,2 @@
+Hello, world Praise the sun
+python is a high-level programming language that is used for data science, machine learning and other cool things
