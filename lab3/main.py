@@ -1,57 +1,43 @@
-class Node:
-    def __init__(self, value=None):
-        self.value = value
-        self.left = None
-        self.right = None
-
-
 class BinarySearchTree:
-    __stack = []
+    def __init__(self, value=None, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
 
-    def __init__(self, root):
-        current = root
-        while current is not None:
-            self.__stack.append(current)
-            current = current.left
-
-    def current(self):
-        return self.__stack[-1]
-
-    def insert(self, value):
-        if not self.value:
+    def add_element(self, value):
+        # if the tree is empty
+        if self.value is None:
             self.value = value
-            return
-        if self.value == value:
-            return
-        if value < self.value:
-            if self.left:
-                self.left.insert(value)
-                return
-            self.left = BinarySearchTree(value)
-            return
-        if self.right:
-            self.right.insert(value)
-            return
-        self.right = BinarySearchTree(value)
 
-    # inorder
-    def next(self):
-        current = self.current().right
-        self.__stack.pop()
-        while current is not None:
-            self.__stack.append(current)
-            current = current.left
+        elif value < self.value:
+            if self.left is not None:
+                self.left.add_element(value)
+            else:
+                self.left = BinarySearchTree(value)
+        else:
+            if self.right is not None:
+                self.right.add_element(value)
+            else:
+                self.right = BinarySearchTree(value)
 
     def __iter__(self):
-        yield 
+        if self.left:
+            yield from self.left.__iter__()
+
+        yield self.value
+
+        if self.right:
+            yield from self.right.__iter__()
 
 
-root = BinarySearchTree(Node(1))
-root.insert(10)
-# root.insert(Node(15))
-# root.insert(Node(5))
-# root.insert(Node(2))
+tree = BinarySearchTree()
 
-for i in root:
-    print(i, end=" ")
+tree_nodes = [1, 200, 1000, 350, 5, 10, 15, 20, 50, 100, 250]
+
+for iter in tree_nodes:
+    tree.add_element(iter)
+
 print()
+
+for iter in tree:
+    print(iter)
